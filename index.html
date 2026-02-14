@@ -15,6 +15,31 @@
     font-family: "Kanit", "Comic Sans MS", sans-serif;
   }
 
+  /* แถบแจ้งเตือน */
+  .notice {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ff4f87;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    z-index: 999;
+  }
+
+  .notice button {
+    margin-left: 10px;
+    background: white;
+    color: #ff4f87;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
   .card {
     background: white;
     padding: 40px 30px;
@@ -25,6 +50,7 @@
     max-width: 360px;
     z-index: 10;
     animation: pop 0.6s ease;
+    margin-top: 40px;
   }
 
   @keyframes pop {
@@ -82,17 +108,11 @@
   }
 
   @keyframes floatUp {
-    from {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-120vh) scale(1.5);
-      opacity: 0;
-    }
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
   }
 
-  /* ซ่อนวิดีโอ */
+  /* ซ่อน YouTube */
   #ytPlayer {
     width: 0;
     height: 0;
@@ -103,7 +123,13 @@
 
 <body>
 
-<!-- เพลงจาก YouTube (จะเริ่มเล่นตอนกดปุ่ม) -->
+<!-- แถบแจ้งเตือน -->
+<div class="notice">
+  🔊 แนะนำให้เปิดในเบราว์เซอร์เพื่อให้มีเสียงเพลง
+  <button onclick="openBrowser()">เปิดในเบราว์เซอร์</button>
+</div>
+
+<!-- เพลง YouTube -->
 <iframe
   id="ytPlayer"
   src=""
@@ -126,6 +152,10 @@
     "จะบอกละน้าา",
     "เป็นแฟนกันมั้ยย 💕"
   ];
+
+  function openBrowser() {
+    window.open(window.location.href, "_blank");
+  }
 
   function startMusic() {
     if (!musicStarted) {
@@ -176,7 +206,7 @@
     `;
   }
 
-  /* หัวใจลอยเต็มจอ */
+  /* หัวใจลอย */
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "floating-heart";
